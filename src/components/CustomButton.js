@@ -1,11 +1,18 @@
-import { View, Text, Button } from 'react-native-web'
+import { View, Text, Button, StyleSheet } from 'react-native-web'
 import React from 'react'
 
 export default function CustomButton() {
     return (
-        <View>
+
+        <View style={styles.butttonContainer}>
             <Text>Bottone</Text>
-            <Button />
+            <Button title='Cliccami' color='red' />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    butttonContainer: {
+        maxWidth: 200
+    }
+})
