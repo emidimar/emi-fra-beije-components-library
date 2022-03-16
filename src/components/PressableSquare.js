@@ -1,14 +1,6 @@
 import { View, Text, Button, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
 
-const styles = StyleSheet.create({
-    container: {
-        width: 85,
-        height: 85,
-        backgroundColor: 'grey'
-    }
-})
-
 const PressableSquare = (props) => {
 
     const onPressHandler = (e) => {
@@ -21,11 +13,23 @@ const PressableSquare = (props) => {
         <Pressable
             style={props.container}
             onPress={onPressHandler}>
-                <Image source={props.imgUrl}/>
+            {props.children}
         </Pressable>
     )
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        width: 85,
+        height: 85,
+        backgroundColor: '#02003A',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 3,
+        borderColor: 'black',
+    }
+})
 
 PressableSquare.defaultProps = {
     container: styles.container

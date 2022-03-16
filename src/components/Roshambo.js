@@ -1,7 +1,38 @@
+import { faHand, faHandBackFist, faHandScissors, faQuestion } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from "react"
 import { View, StyleSheet, Dimensions, Text } from "react-native"
 import PressableSquare from "./PressableSquare"
 
+const MOVES = ["scissors", "paper", "rock"];
+const MOVES_ICON = [faHand, faHandBackFist, faHandScissors, faQuestion]
+
 const Roshambo = (props) => {
+
+    const [randomMove, setRandomMove] = useState(3);
+
+
+    const getRandomMove = () => {
+        let cpu = Math.round(Math.random() * 2);
+        return cpu;
+    };
+
+    const game = (playerOneMove) => () => {
+        let cpu = getRandomMove();
+        let playerTwoMove = MOVES[cpu]
+        if (playerOneMove === playerTwoMove) {
+            console.log("DRAW")
+        } else if (
+            (playerOneMove === "rock" && playerTwoMove === "scissors") ||
+            (playerOneMove === "scissors" && playerTwoMove === "paper") ||
+            (playerOneMove === "paper" && playerTwoMove === "rock")
+        ) {
+            console.log("YOU WIN")
+        } else console.log("PLAYER TWO WIN")
+
+        setRandomMove(cpu)
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.gameRow}>
@@ -10,7 +41,9 @@ const Roshambo = (props) => {
                 >
                     {props.playerTwo}
                 </Text>
-                <PressableSquare />
+                <PressableSquare>
+                    <FontAwesomeIcon size="4x" icon={MOVES_ICON[randomMove]} color='green' />
+                </PressableSquare>
             </View>
             <View style={styles.centralRow}>
                 <Text
@@ -27,15 +60,23 @@ const Roshambo = (props) => {
                 </Text>
 
                 <View style={styles.choiceRow}>
-                    <PressableSquare />
-                    <PressableSquare />
-                    <PressableSquare />
+                    <PressableSquare
+                        onPress={game('paper')}>
+                        <FontAwesomeIcon size="4x" icon={faHand} color='pink' />
+                    </PressableSquare>
+                    <PressableSquare
+                        onPress={game('rock')}>
+                        <FontAwesomeIcon size="4x" icon={faHandBackFist} color='pink' />
+                    </PressableSquare>
+                    <PressableSquare
+                        onPress={game('scissors')}>
+                        <FontAwesomeIcon size="4x" icon={faHandScissors} color='pink' />
+                    </PressableSquare>
                 </View>
 
             </View>
         </View>
     )
-
 }
 
 const styles = StyleSheet.create({
@@ -49,8 +90,6 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-
-        backgroundColor: "#8ED1FC",
     },
     centralRow: {
         height: '20%',
@@ -69,7 +108,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize: 40,
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     }
 })
 
