@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function CustomButton(props) {
+const CustomButton = (props) => {
 
     const onPressHandler = (e) => {
             if(!!props.onPress) {
@@ -30,3 +30,5 @@ CustomButton.defaultProps = {
     buttonContainer : styles.buttonContainer,
     title: "button"
 }
+
+export default CustomButton
