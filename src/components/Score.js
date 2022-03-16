@@ -5,7 +5,7 @@ import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons'
 const Score = (props) => {
 
     let result = ''
-    let icon = ''
+    let icon = null
     let dimension = ''
     let dimensionIcon = ''
 
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         padding: 6,
         backgroundColor: 'black',
-        borderRadius: 100,
     },
 
     containerScoreMD: {
@@ -58,7 +57,6 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         padding: 4,
         backgroundColor: 'black',
-        borderRadius: 100,
     },
 
     containerScoreSM: {
@@ -95,11 +93,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#D3D4D4',
         borderRadius: 100,
+        justifyContent: 'center',
     }
 })
 
 Score.defaultProps = {
-    result: "default"
+    result: "default",
+    dimension: "sm"
 }
 
 export default Score

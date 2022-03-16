@@ -1,10 +1,10 @@
-import { View, Text, Button, StyleSheet, Pressable, Image } from 'react-native-web'
+import { View, Text, Button, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
 
 const styles = StyleSheet.create({
     container: {
-        width: 100,
-        height: 100,
+        width: 85,
+        height: 85,
         backgroundColor: 'grey'
     }
 })

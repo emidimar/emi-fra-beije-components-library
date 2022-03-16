@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from 'react-native-web'
+import { View, Button, StyleSheet } from 'react-native'
 import React from 'react'
 
 const styles = StyleSheet.create({
