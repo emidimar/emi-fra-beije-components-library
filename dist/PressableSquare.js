@@ -12,31 +12,30 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = _reactNativeWeb.StyleSheet.create({
-  buttonContainer: {
-    maxWidth: 200,
-    margin: 5
+  container: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'grey'
   }
 });
 
-var CustomButton = function CustomButton(props) {
+var PressableSquare = function PressableSquare(props) {
   var onPressHandler = function onPressHandler(e) {
     if (!!props.onPress) {
       props.onPress(e);
     }
   };
 
-  return /*#__PURE__*/_react.default.createElement(_reactNativeWeb.View, {
-    style: props.buttonContainer
-  }, /*#__PURE__*/_react.default.createElement(_reactNativeWeb.Button, {
-    title: props.title,
-    color: props.color,
+  return /*#__PURE__*/_react.default.createElement(_reactNativeWeb.Pressable, {
+    style: props.container,
     onPress: onPressHandler
+  }, /*#__PURE__*/_react.default.createElement(_reactNativeWeb.Image, {
+    source: props.imgUrl
   }));
 };
 
-CustomButton.defaultProps = {
-  buttonContainer: styles.buttonContainer,
-  title: "button"
+PressableSquare.defaultProps = {
+  container: styles.container
 };
-var _default = CustomButton;
+var _default = PressableSquare;
 exports.default = _default;
