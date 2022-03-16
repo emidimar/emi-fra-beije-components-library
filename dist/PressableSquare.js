@@ -5,19 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactNativeWeb = require("react-native-web");
+var _reactNative = require("react-native");
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var styles = _reactNativeWeb.StyleSheet.create({
-  container: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'grey'
-  }
-});
 
 var PressableSquare = function PressableSquare(props) {
   var onPressHandler = function onPressHandler(e) {
@@ -26,13 +18,23 @@ var PressableSquare = function PressableSquare(props) {
     }
   };
 
-  return /*#__PURE__*/_react.default.createElement(_reactNativeWeb.Pressable, {
+  return /*#__PURE__*/_react.default.createElement(_reactNative.Pressable, {
     style: props.container,
     onPress: onPressHandler
-  }, /*#__PURE__*/_react.default.createElement(_reactNativeWeb.Image, {
-    source: props.imgUrl
-  }));
+  }, props.children);
 };
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    width: 85,
+    height: 85,
+    backgroundColor: '#02003A',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: 'black'
+  }
+});
 
 PressableSquare.defaultProps = {
   container: styles.container

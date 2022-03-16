@@ -5,13 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _reactNativeWeb = require("react-native-web");
+var _reactNative = require("react-native");
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var styles = _reactNativeWeb.StyleSheet.create({
+var styles = _reactNative.StyleSheet.create({
   buttonContainer: {
     maxWidth: 200,
     margin: 5
@@ -25,9 +25,9 @@ var CustomButton = function CustomButton(props) {
     }
   };
 
-  return /*#__PURE__*/_react.default.createElement(_reactNativeWeb.View, {
+  return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: props.buttonContainer
-  }, /*#__PURE__*/_react.default.createElement(_reactNativeWeb.Button, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Button, {
     title: props.title,
     color: props.color,
     onPress: onPressHandler
