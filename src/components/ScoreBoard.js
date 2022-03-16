@@ -1,31 +1,34 @@
-import { Component } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native-web'
-
-import CustomButton from './CustomButton'
+import { View, StyleSheet } from 'react-native'
 import Score from './Score'
+import React from 'react'
 
-class ScoreBoard extends Component {
-    constructor(props) {
-        super(props)
+const ScoreBoard = (props) => {
+
+    let customResult = []
+
+
+    const showCustomResult = () => {
+
     }
 
-    render() {
-        return (
-            <View style={styles.scoreContainer}>
-                <Score/>
-                <Score/>
-                <Score/>
-                <Score/>
-            </View>
-        )
+    const showLastResult = () => {
+
     }
+
+    return (
+        <View style={styles.scoreContainer}>
+            {!!props.lastResult ? props.lastResult.map(showLastResult) : customResult.map(showCustomResult)}
+        </View>
+    )
 }
+
 
 const styles = StyleSheet.create({
     scoreContainer: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
-}) 
+})
 
 export default ScoreBoard

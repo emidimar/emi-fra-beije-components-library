@@ -1,25 +1,41 @@
-import { View, Text, Button, StyleSheet } from 'react-native-web'
+import { View, StyleSheet } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 const Score = (props) => {
 
-    let status = ''
+    let result = ''
     let icon = ''
+    let dimension = ''
+    let dimensionIcon = ''
 
-    if (props.status === "win") {
-        status = styles.win
-        icon = <FontAwesomeIcon icon="fa-solid fa-check" />
-    } else if (props.status === "lose") {
-        status = styles.lose
+    if (props.dimension === 'lg') {
+        dimension = styles.containerScoreLG
+        dimensionIcon = '4x'
+    } else if (props.dimension === 'md') {
+        dimension = styles.containerScoreMD
+        dimensionIcon = '2x'
     } else {
-        status = styles.draw
+        dimension = styles.containerScoreSM
+        dimensionIcon = 'sm'
     }
 
+    if (props.result === "win") {
+        result = styles.win
+        icon = <FontAwesomeIcon size={dimensionIcon} icon={faCheck} />
+    } else if (props.result === "lose") {
+        result = styles.lose
+        icon = <FontAwesomeIcon size={dimensionIcon} icon={faXmark} />
+    } else if (props.result === "draw") {
+        result = styles.draw
+        icon = <FontAwesomeIcon size={dimensionIcon} icon={faMinus} />
+    } else
+        result = styles.default
+
     return (
-        <View style={styles.containerScore}>
-            <View style={status}>
-                <FontAwesomeIcon icon={faCheck} />
+        <View style={dimension}>
+            <View style={result}>
+                {icon}
             </View>
         </View>
 
@@ -27,30 +43,63 @@ const Score = (props) => {
 }
 
 const styles = StyleSheet.create({
-    containerScore: {
+    containerScoreLG: {
         width: 100,
         height: 100,
-        margin: 5
+        borderRadius: 100,
+        padding: 6,
+        backgroundColor: 'black',
+        borderRadius: 100,
     },
+
+    containerScoreMD: {
+        width: 50,
+        height: 50,
+        borderRadius: 100,
+        padding: 4,
+        backgroundColor: 'black',
+        borderRadius: 100,
+    },
+
+    containerScoreSM: {
+        width: 20,
+        height: 20,
+        padding: 2,
+        backgroundColor: 'black',
+        borderRadius: 100,
+    },
+
     win: {
         flex: 1,
         backgroundColor: "#4CAF50",
         borderRadius: 100,
+        justifyContent: 'center',
+        boxSizing: 'border-box'
+
     },
     lose: {
         flex: 1,
         backgroundColor: '#b80000',
         borderRadius: 100,
+        justifyContent: 'center',
     },
+
     draw: {
         flex: 1,
         backgroundColor: '#ABB8C3',
+        borderRadius: 100,
+        justifyContent: 'center',
+    },
+
+    default: {
+        flex: 1,
+        backgroundColor: '#D3D4D4',
         borderRadius: 100,
     }
 })
 
 Score.defaultProps = {
-    status: "win"
+    result: "default"
 }
 
 export default Score
