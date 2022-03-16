@@ -5,10 +5,16 @@ import { Platform } from 'react-native-web';
 
 function App() {
   return (
-
+ 
+    
     Platform.OS === 'web' &&
+    <div>
     <CustomButton />
-  );
+    <CustomButton />
+    <CustomButton />
+    <CustomButton /> 
+    </div>
+  )
 }
 
 export default App;

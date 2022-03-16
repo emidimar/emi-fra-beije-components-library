@@ -1,18 +1,32 @@
 import { View, Text, Button, StyleSheet } from 'react-native-web'
 import React from 'react'
 
-export default function CustomButton() {
-    return (
+const styles = StyleSheet.create({
+    buttonContainer: {
+        maxWidth: 200,
+        margin: 5
+    }
+})
 
-        <View style={styles.butttonContainer}>
-            <Text>Bottone</Text>
-            <Button title='Cliccami' color='red' />
+export default function CustomButton(props) {
+
+    const onPressHandler = (e) => {
+            if(!!props.onPress) {
+                props.onPress(e)
+            }
+    }
+
+    return (
+        <View style={props.buttonContainer}>
+            <Button 
+            title={props.title} 
+            color={props.color}
+            onPress={onPressHandler} />
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    butttonContainer: {
-        maxWidth: 200
-    }
-})
+CustomButton.defaultProps = {
+    buttonContainer : styles.buttonContainer,
+    title: "button"
+}
