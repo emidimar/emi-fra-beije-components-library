@@ -1,5 +1,7 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -9,13 +11,21 @@ var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
 
 var _reactFontawesome = require("@fortawesome/react-fontawesome");
 
-var _react = require("react");
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactNative = require("react-native");
 
 var _PressableSquare = _interopRequireDefault(require("./PressableSquare"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -29,7 +39,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var MOVES = ["scissors", "paper", "rock"];
+var MOVES = ["paper", "rock", "scissors"];
 var MOVES_ICON = [_freeSolidSvgIcons.faHand, _freeSolidSvgIcons.faHandBackFist, _freeSolidSvgIcons.faHandScissors, _freeSolidSvgIcons.faQuestion];
 
 var Roshambo = function Roshambo(props) {
@@ -38,64 +48,147 @@ var Roshambo = function Roshambo(props) {
       randomMove = _useState2[0],
       setRandomMove = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(['#FFE66D', "#FFE66D", "#FFE66D"]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      colors = _useState4[0],
+      setColors = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isWaiting = _useState6[0],
+      setWait = _useState6[1];
+
   var getRandomMove = function getRandomMove() {
     var cpu = Math.round(Math.random() * 2);
     return cpu;
   };
 
-  var game = function game(playerOneMove) {
-    return function () {
-      var cpu = getRandomMove();
-      var playerTwoMove = MOVES[cpu];
-
-      if (playerOneMove === playerTwoMove) {
-        console.log("DRAW");
-      } else if (playerOneMove === "rock" && playerTwoMove === "scissors" || playerOneMove === "scissors" && playerTwoMove === "paper" || playerOneMove === "paper" && playerTwoMove === "rock") {
-        console.log("YOU WIN");
-      } else console.log("PLAYER TWO WIN");
-
-      setRandomMove(cpu);
-    };
+  var changeKeyDisplay = function changeKeyDisplay(id, isWaiting) {
+    var newColors = colors.map(function (color, key) {
+      if (key === id || id === true) return '#FFE66D';else {
+        return "#D6D9D6";
+      }
+    });
+    setColors(newColors);
+    setWait(isWaiting);
   };
 
-  return /*#__PURE__*/React.createElement(_reactNative.View, {
+  var timer = function timer(ms) {
+    return new Promise(function (res) {
+      return setTimeout(res, ms);
+    });
+  };
+
+  var game = function game(moveId) {
+    return /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var cpu, playerTwoMove, playerOneMove, i, random;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (isWaiting) {
+                _context.next = 21;
+                break;
+              }
+
+              changeKeyDisplay(moveId, true); //Choose Moves
+
+              cpu = getRandomMove();
+              playerTwoMove = MOVES[cpu];
+              playerOneMove = MOVES[moveId]; // Animation of CPU
+
+              i = 0;
+
+            case 6:
+              if (!(i < 25)) {
+                _context.next = 19;
+                break;
+              }
+
+              random = Math.floor(Math.random() * 2);
+              setRandomMove(random);
+
+              if (!(i < 20)) {
+                _context.next = 14;
+                break;
+              }
+
+              _context.next = 12;
+              return timer(100);
+
+            case 12:
+              _context.next = 16;
+              break;
+
+            case 14:
+              _context.next = 16;
+              return timer(300);
+
+            case 16:
+              i++;
+              _context.next = 6;
+              break;
+
+            case 19:
+              if (playerOneMove === playerTwoMove) {
+                if (!!props.onWin) props.onDraw(playerOneMove, playerTwoMove);
+              } else if (playerOneMove === "rock" && playerTwoMove === "scissors" || playerOneMove === "scissors" && playerTwoMove === "paper" || playerOneMove === "paper" && playerTwoMove === "rock") {
+                if (!!props.onWin) props.onWin(playerOneMove, playerTwoMove);
+              } else {
+                if (!!props.onWin) props.onLose(playerOneMove, playerTwoMove);
+              }
+
+              changeKeyDisplay(true, false);
+
+            case 21:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.container
-  }, /*#__PURE__*/React.createElement(_reactNative.View, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.gameRow
-  }, /*#__PURE__*/React.createElement(_reactNative.Text, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
     style: props.textStyle
-  }, props.playerTwo), /*#__PURE__*/React.createElement(_PressableSquare.default, null, /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+  }, props.playerTwo), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+    style: styles.choiceRow
+  }, /*#__PURE__*/_react.default.createElement(_PressableSquare.default, null, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     size: "4x",
     icon: MOVES_ICON[randomMove],
-    color: "green"
-  }))), /*#__PURE__*/React.createElement(_reactNative.View, {
+    color: "#FFE66D"
+  })))), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.centralRow
-  }, /*#__PURE__*/React.createElement(_reactNative.Text, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
     style: props.textStyle
-  }, "VS")), /*#__PURE__*/React.createElement(_reactNative.View, {
+  }, "VS")), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.gameRow
-  }, /*#__PURE__*/React.createElement(_reactNative.Text, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
     style: props.textStyle
-  }, props.playerOne), /*#__PURE__*/React.createElement(_reactNative.View, {
+  }, props.playerOne), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.choiceRow
-  }, /*#__PURE__*/React.createElement(_PressableSquare.default, {
-    onPress: game('paper')
-  }, /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
+    onPress: game(0)
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     size: "4x",
     icon: _freeSolidSvgIcons.faHand,
-    color: "pink"
-  })), /*#__PURE__*/React.createElement(_PressableSquare.default, {
-    onPress: game('rock')
-  }, /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+    color: colors[0]
+  })), /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
+    onPress: game(1)
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     size: "4x",
     icon: _freeSolidSvgIcons.faHandBackFist,
-    color: "pink"
-  })), /*#__PURE__*/React.createElement(_PressableSquare.default, {
-    onPress: game('scissors')
-  }, /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+    color: colors[1]
+  })), /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
+    onPress: game(2)
+  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     size: "4x",
     icon: _freeSolidSvgIcons.faHandScissors,
-    color: "pink"
+    color: colors[2]
   })))));
 };
 
@@ -109,6 +202,7 @@ var styles = _reactNative.StyleSheet.create({
     height: '40%',
     width: '100%',
     alignItems: 'center',
+    backgroundColor: "#F7FFF7",
     justifyContent: 'center'
   },
   centralRow: {
@@ -116,7 +210,7 @@ var styles = _reactNative.StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: "#2D6386"
+    backgroundColor: '#FF6B6B'
   },
   choiceRow: {
     marginTop: "4%",

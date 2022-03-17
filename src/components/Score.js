@@ -1,6 +1,7 @@
 import { View, StyleSheet } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
 
 const Score = (props) => {
 
@@ -72,7 +73,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#4CAF50",
         borderRadius: 100,
         justifyContent: 'center',
-        boxSizing: 'border-box'
 
     },
     lose: {

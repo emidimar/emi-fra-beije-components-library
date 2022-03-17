@@ -11,6 +11,10 @@ var _reactFontawesome = require("@fortawesome/react-fontawesome");
 
 var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
 
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var Score = function Score(props) {
   var result = '';
   var icon = null;
@@ -30,27 +34,27 @@ var Score = function Score(props) {
 
   if (props.result === "win") {
     result = styles.win;
-    icon = /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon = /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
       size: dimensionIcon,
       icon: _freeSolidSvgIcons.faCheck
     });
   } else if (props.result === "lose") {
     result = styles.lose;
-    icon = /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon = /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
       size: dimensionIcon,
       icon: _freeSolidSvgIcons.faXmark
     });
   } else if (props.result === "draw") {
     result = styles.draw;
-    icon = /*#__PURE__*/React.createElement(_reactFontawesome.FontAwesomeIcon, {
+    icon = /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
       size: dimensionIcon,
       icon: _freeSolidSvgIcons.faMinus
     });
   } else result = styles.default;
 
-  return /*#__PURE__*/React.createElement(_reactNative.View, {
+  return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: dimension
-  }, /*#__PURE__*/React.createElement(_reactNative.View, {
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: result
   }, icon));
 };
@@ -81,8 +85,7 @@ var styles = _reactNative.StyleSheet.create({
     flex: 1,
     backgroundColor: "#4CAF50",
     borderRadius: 100,
-    justifyContent: 'center',
-    boxSizing: 'border-box'
+    justifyContent: 'center'
   },
   lose: {
     flex: 1,

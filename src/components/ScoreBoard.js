@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     scoreContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        alignItems: 'center'
     }
 })
 

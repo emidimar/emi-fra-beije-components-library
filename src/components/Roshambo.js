@@ -1,6 +1,6 @@
 import { faHand, faHandBackFist, faHandScissors, faQuestion } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useState } from "react"
+import React, { useState } from "react"
 import { View, StyleSheet, Text } from "react-native"
 import PressableSquare from "./PressableSquare"
 
