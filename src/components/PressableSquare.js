@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
     container: {
         width: 85,
         height: 85,
-        backgroundColor: '#02003A',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 3,
-        borderColor: 'black',
+        borderWidth: 4,
+        borderColor: '#1A535C',
+        backgroundColor: '#FF6B6B',
     }
 })
 

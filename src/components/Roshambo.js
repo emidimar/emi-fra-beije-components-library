@@ -4,33 +4,72 @@ import { useState } from "react"
 import { View, StyleSheet, Dimensions, Text } from "react-native"
 import PressableSquare from "./PressableSquare"
 
-const MOVES = ["scissors", "paper", "rock"];
+const MOVES = ["paper", "rock", "scissors"];
 const MOVES_ICON = [faHand, faHandBackFist, faHandScissors, faQuestion]
 
 const Roshambo = (props) => {
 
     const [randomMove, setRandomMove] = useState(3);
-
+    const [colors, setColors] = useState(['#FFE66D', "#FFE66D", "#FFE66D"])
+    const [isWaiting, setWait] = useState(false)
 
     const getRandomMove = () => {
         let cpu = Math.round(Math.random() * 2);
         return cpu;
     };
 
-    const game = (playerOneMove) => () => {
-        let cpu = getRandomMove();
-        let playerTwoMove = MOVES[cpu]
-        if (playerOneMove === playerTwoMove) {
-            console.log("DRAW")
-        } else if (
-            (playerOneMove === "rock" && playerTwoMove === "scissors") ||
-            (playerOneMove === "scissors" && playerTwoMove === "paper") ||
-            (playerOneMove === "paper" && playerTwoMove === "rock")
-        ) {
-            console.log("YOU WIN")
-        } else console.log("PLAYER TWO WIN")
+    const changeKeyDisplay = (id, isWaiting) => {
+        let newColors = colors.map((color, key) => {
+            if (key === id || id === true)
+                return '#FFE66D'
+            else {
+                return "#D6D9D6"
+            }
+        })
+        setColors(newColors)
+        setWait(isWaiting)
+    }
 
-        setRandomMove(cpu)
+    const timer = (ms) => new Promise(res => setTimeout(res, ms))
+
+    const game = (moveId) => async () => {
+        if (!isWaiting) {
+            changeKeyDisplay(moveId, true)
+
+            //Choose Moves
+            let cpu = getRandomMove();
+            let playerTwoMove = MOVES[cpu]
+            let playerOneMove = MOVES[moveId]
+
+            // Animation of CPU
+            for (var i = 0; i < 25; i++) {
+
+                let random = Math.floor((Math.random() * 2));
+                setRandomMove(random)
+                if (i < 20) {
+                    await timer(100);
+                } else {
+                    await timer(300)
+                }
+            }
+
+            if (playerOneMove === playerTwoMove) {
+                if (!!props.onWin)
+                    props.onDraw(playerOneMove, playerTwoMove)
+            } else if (
+                (playerOneMove === "rock" && playerTwoMove === "scissors") ||
+                (playerOneMove === "scissors" && playerTwoMove === "paper") ||
+                (playerOneMove === "paper" && playerTwoMove === "rock")
+            ) {
+                if (!!props.onWin)
+                    props.onWin(playerOneMove, playerTwoMove)
+            } else {
+                if (!!props.onWin)
+                    props.onLose(playerOneMove, playerTwoMove)
+            }
+
+            changeKeyDisplay(true, false)
+        }
     }
 
     return (
@@ -41,9 +80,11 @@ const Roshambo = (props) => {
                 >
                     {props.playerTwo}
                 </Text>
-                <PressableSquare>
-                    <FontAwesomeIcon size="4x" icon={MOVES_ICON[randomMove]} color='green' />
-                </PressableSquare>
+                <View style={styles.choiceRow}>
+                    <PressableSquare>
+                        <FontAwesomeIcon size="4x" icon={MOVES_ICON[randomMove]} color="#FFE66D" />
+                    </PressableSquare>
+                </View>
             </View>
             <View style={styles.centralRow}>
                 <Text
@@ -61,19 +102,18 @@ const Roshambo = (props) => {
 
                 <View style={styles.choiceRow}>
                     <PressableSquare
-                        onPress={game('paper')}>
-                        <FontAwesomeIcon size="4x" icon={faHand} color='pink' />
+                        onPress={game(0)}>
+                        <FontAwesomeIcon size="4x" icon={faHand} color={colors[0]} />
                     </PressableSquare>
                     <PressableSquare
-                        onPress={game('rock')}>
-                        <FontAwesomeIcon size="4x" icon={faHandBackFist} color='pink' />
+                        onPress={game(1)}>
+                        <FontAwesomeIcon size="4x" icon={faHandBackFist} color={colors[1]} />
                     </PressableSquare>
                     <PressableSquare
-                        onPress={game('scissors')}>
-                        <FontAwesomeIcon size="4x" icon={faHandScissors} color='pink' />
+                        onPress={game(2)}>
+                        <FontAwesomeIcon size="4x" icon={faHandScissors} color={colors[2]} />
                     </PressableSquare>
                 </View>
-
             </View>
         </View>
     )
@@ -89,6 +129,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '100%',
         alignItems: 'center',
+        backgroundColor: "#F7FFF7",
         justifyContent: 'center',
     },
     centralRow: {
@@ -96,8 +137,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-around',
-
-        backgroundColor: "#2D6386"
+        backgroundColor: '#FF6B6B'
     },
     choiceRow: {
         marginTop: "4%",
