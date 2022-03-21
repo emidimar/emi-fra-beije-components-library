@@ -167,10 +167,12 @@ function App() {
     }]
 
   return (
-    <div style={{ height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', flex: 1 }}>
+        <ScoreBoard resultsNumber={3} dimension="md" />
+      </div>
       <div style={{ display: 'flex', flex: 8 }}>
-        <HighScore lastResults={true} data={data} />
-        <ScoreBoard resultsNumber={5} dimension='lg' />
+        <Roshambo />
       </div>
     </div>
   )
