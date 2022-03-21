@@ -12,10 +12,10 @@ const Score = (props) => {
 
     if (props.dimension === 'lg') {
         dimension = styles.containerScoreLG
-        dimensionIcon = '4x'
+        dimensionIcon = 'lg'
     } else if (props.dimension === 'md') {
         dimension = styles.containerScoreMD
-        dimensionIcon = '2x'
+        dimensionIcon = 'md'
     } else {
         dimension = styles.containerScoreSM
         dimensionIcon = 'sm'
@@ -30,8 +30,10 @@ const Score = (props) => {
     } else if (props.result === "draw") {
         result = styles.draw
         icon = <FontAwesomeIcon size={dimensionIcon} icon={faMinus} />
-    } else
+    } else {
         result = styles.default
+        icon = props.text
+    }
 
     return (
         <View style={dimension}>
@@ -45,11 +47,13 @@ const Score = (props) => {
 
 const styles = StyleSheet.create({
     containerScoreLG: {
-        width: 100,
-        height: 100,
+        width: 80,
+        height: 80,
         borderRadius: 100,
         padding: 6,
         backgroundColor: 'black',
+        fontSize: '3em',
+        fontWeight: 'bold'
     },
 
     containerScoreMD: {
@@ -58,6 +62,8 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         padding: 4,
         backgroundColor: 'black',
+        fontSize: '2em',
+        fontWeight: 'bold'
     },
 
     containerScoreSM: {
@@ -66,6 +72,8 @@ const styles = StyleSheet.create({
         padding: 2,
         backgroundColor: 'black',
         borderRadius: 100,
+        fontSize: '1em',
+        fontWeight: 'bold'
     },
 
     win: {
@@ -94,6 +102,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#D3D4D4',
         borderRadius: 100,
         justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

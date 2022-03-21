@@ -11,6 +11,7 @@ const ScoreBoard = (props) => {
             <Score
                 key={key}
                 dimension={props.dimension}
+                text={key + 1}
             />
         )
     }
@@ -21,6 +22,7 @@ const ScoreBoard = (props) => {
                 key={key}
                 dimension={props.dimension}
                 result={element}
+                text={key + 1}
             />
         )
     }

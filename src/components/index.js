@@ -4,6 +4,7 @@ import Score from './Score';
 import ScoreBoard from './ScoreBoard'
 import Roshambo from './Roshambo';
 import HighScore from './HighScore';
+import Modal from './Modal';
 
 export {
     CustomButton,
@@ -11,5 +12,6 @@ export {
     Score,
     ScoreBoard,
     Roshambo,
-    HighScore
+    HighScore,
+    Modal
 };
