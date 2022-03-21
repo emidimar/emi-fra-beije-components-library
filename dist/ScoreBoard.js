@@ -19,7 +19,8 @@ var ScoreBoard = function ScoreBoard(props) {
   var showCustomResult = function showCustomResult(element, key) {
     return /*#__PURE__*/_react.default.createElement(_Score.default, {
       key: key,
-      dimension: props.dimension
+      dimension: props.dimension,
+      text: key + 1
     });
   };
 
@@ -27,7 +28,8 @@ var ScoreBoard = function ScoreBoard(props) {
     return /*#__PURE__*/_react.default.createElement(_Score.default, {
       key: key,
       dimension: props.dimension,
-      result: element
+      result: element,
+      text: key + 1
     });
   };
 

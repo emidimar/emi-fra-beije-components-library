@@ -23,10 +23,10 @@ var Score = function Score(props) {
 
   if (props.dimension === 'lg') {
     dimension = styles.containerScoreLG;
-    dimensionIcon = '4x';
+    dimensionIcon = 'lg';
   } else if (props.dimension === 'md') {
     dimension = styles.containerScoreMD;
-    dimensionIcon = '2x';
+    dimensionIcon = 'md';
   } else {
     dimension = styles.containerScoreSM;
     dimensionIcon = 'sm';
@@ -50,7 +50,10 @@ var Score = function Score(props) {
       size: dimensionIcon,
       icon: _freeSolidSvgIcons.faMinus
     });
-  } else result = styles.default;
+  } else {
+    result = styles.default;
+    icon = props.text;
+  }
 
   return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: dimension
@@ -61,25 +64,31 @@ var Score = function Score(props) {
 
 var styles = _reactNative.StyleSheet.create({
   containerScoreLG: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: 100,
     padding: 6,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    fontSize: '3em',
+    fontWeight: 'bold'
   },
   containerScoreMD: {
     width: 50,
     height: 50,
     borderRadius: 100,
     padding: 4,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    fontSize: '2em',
+    fontWeight: 'bold'
   },
   containerScoreSM: {
     width: 20,
     height: 20,
     padding: 2,
     backgroundColor: 'black',
-    borderRadius: 100
+    borderRadius: 100,
+    fontSize: '1em',
+    fontWeight: 'bold'
   },
   win: {
     flex: 1,
@@ -103,7 +112,8 @@ var styles = _reactNative.StyleSheet.create({
     flex: 1,
     backgroundColor: '#D3D4D4',
     borderRadius: 100,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

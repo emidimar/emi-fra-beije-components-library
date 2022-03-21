@@ -15,6 +15,12 @@ Object.defineProperty(exports, "HighScore", {
     return _HighScore.default;
   }
 });
+Object.defineProperty(exports, "Modal", {
+  enumerable: true,
+  get: function get() {
+    return _Modal.default;
+  }
+});
 Object.defineProperty(exports, "PressableSquare", {
   enumerable: true,
   get: function get() {
@@ -51,5 +57,7 @@ var _ScoreBoard = _interopRequireDefault(require("./ScoreBoard"));
 var _Roshambo = _interopRequireDefault(require("./Roshambo"));
 
 var _HighScore = _interopRequireDefault(require("./HighScore"));
+
+var _Modal = _interopRequireDefault(require("./Modal"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
