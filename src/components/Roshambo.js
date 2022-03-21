@@ -54,7 +54,7 @@ const Roshambo = (props) => {
             }
 
             if (playerOneMove === playerTwoMove) {
-                if (!!props.onWin)
+                if (!!props.onDraw)
                     props.onDraw(playerOneMove, playerTwoMove)
             } else if (
                 (playerOneMove === "rock" && playerTwoMove === "scissors") ||
@@ -64,7 +64,7 @@ const Roshambo = (props) => {
                 if (!!props.onWin)
                     props.onWin(playerOneMove, playerTwoMove)
             } else {
-                if (!!props.onWin)
+                if (!!props.onLose)
                     props.onLose(playerOneMove, playerTwoMove)
             }
 

@@ -131,11 +131,11 @@ var Roshambo = function Roshambo(props) {
 
             case 19:
               if (playerOneMove === playerTwoMove) {
-                if (!!props.onWin) props.onDraw(playerOneMove, playerTwoMove);
+                if (!!props.onDraw) props.onDraw(playerOneMove, playerTwoMove);
               } else if (playerOneMove === "rock" && playerTwoMove === "scissors" || playerOneMove === "scissors" && playerTwoMove === "paper" || playerOneMove === "paper" && playerTwoMove === "rock") {
                 if (!!props.onWin) props.onWin(playerOneMove, playerTwoMove);
               } else {
-                if (!!props.onWin) props.onLose(playerOneMove, playerTwoMove);
+                if (!!props.onLose) props.onLose(playerOneMove, playerTwoMove);
               }
 
               changeKeyDisplay(true, false);
