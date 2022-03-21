@@ -87,7 +87,7 @@ var Roshambo = function Roshambo(props) {
           switch (_context.prev = _context.next) {
             case 0:
               if (isWaiting) {
-                _context.next = 21;
+                _context.next = 24;
                 break;
               }
 
@@ -130,6 +130,10 @@ var Roshambo = function Roshambo(props) {
               break;
 
             case 19:
+              setRandomMove(cpu);
+              console.log("Player 1: ", playerOneMove);
+              console.log("Computer: ", playerTwoMove);
+
               if (playerOneMove === playerTwoMove) {
                 if (!!props.onDraw) props.onDraw(playerOneMove, playerTwoMove);
               } else if (playerOneMove === "rock" && playerTwoMove === "scissors" || playerOneMove === "scissors" && playerTwoMove === "paper" || playerOneMove === "paper" && playerTwoMove === "rock") {
@@ -140,7 +144,7 @@ var Roshambo = function Roshambo(props) {
 
               changeKeyDisplay(true, false);
 
-            case 21:
+            case 24:
             case "end":
               return _context.stop();
           }
