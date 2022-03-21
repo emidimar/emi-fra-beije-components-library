@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '100%',
         alignItems: 'center',
-        backgroundColor: "#F7FFF7",
         justifyContent: 'center',
     },
     centralRow: {

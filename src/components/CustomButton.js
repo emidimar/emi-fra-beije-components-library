@@ -11,23 +11,23 @@ const styles = StyleSheet.create({
 const CustomButton = (props) => {
 
     const onPressHandler = (e) => {
-            if(!!props.onPress) {
-                props.onPress(e)
-            }
+        if (!!props.onPress) {
+            props.onPress(e)
+        }
     }
 
     return (
         <View style={props.buttonContainer}>
-            <Button 
-            title={props.title} 
-            color={props.color}
-            onPress={onPressHandler} />
+            <Button
+                title={props.title}
+                color={props.color}
+                onPress={onPressHandler} />
         </View>
     )
 }
 
 CustomButton.defaultProps = {
-    buttonContainer : styles.buttonContainer,
+    buttonContainer: styles.buttonContainer,
     title: "button"
 }
 
