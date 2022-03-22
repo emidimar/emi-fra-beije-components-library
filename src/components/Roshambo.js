@@ -54,9 +54,6 @@ const Roshambo = (props) => {
             }
             setRandomMove(cpu)
 
-            console.log("Player 1: ", playerOneMove)
-            console.log("Computer: ", playerTwoMove)
-
             if (playerOneMove === playerTwoMove) {
                 if (!!props.onDraw)
                     props.onDraw(playerOneMove, playerTwoMove)
