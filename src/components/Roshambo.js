@@ -1,14 +1,12 @@
-import { faHand, faHandBackFist, faHandScissors, faQuestion } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React, { useState } from "react"
 import { View, StyleSheet, Text } from "react-native"
 import PressableSquare from "./PressableSquare"
 
 const MOVES = ["paper", "rock", "scissors"];
-const MOVES_ICON = [faHand, faHandBackFist, faHandScissors, faQuestion]
 
 const Roshambo = (props) => {
 
+    const MOVES_ICON = [props.paper, props.rock, props.scissors, props.cpu]
     const [randomMove, setRandomMove] = useState(3);
     const [colors, setColors] = useState(['#FFE66D', "#FFE66D", "#FFE66D"])
     const [isWaiting, setWait] = useState(false)
@@ -83,7 +81,7 @@ const Roshambo = (props) => {
                 </Text>
                 <View style={styles.choiceRow}>
                     <PressableSquare>
-                        <FontAwesomeIcon size="4x" icon={MOVES_ICON[randomMove]} color="#FFE66D" />
+                        {MOVES_ICON[randomMove]}
                     </PressableSquare>
                 </View>
             </View>
@@ -104,15 +102,15 @@ const Roshambo = (props) => {
                 <View style={styles.choiceRow}>
                     <PressableSquare
                         onPress={game(0)}>
-                        <FontAwesomeIcon size="4x" icon={faHand} color={colors[0]} />
+                        {MOVES_ICON[0]}
                     </PressableSquare>
                     <PressableSquare
                         onPress={game(1)}>
-                        <FontAwesomeIcon size="4x" icon={faHandBackFist} color={colors[1]} />
+                        {MOVES_ICON[1]}
                     </PressableSquare>
                     <PressableSquare
                         onPress={game(2)}>
-                        <FontAwesomeIcon size="4x" icon={faHandScissors} color={colors[2]} />
+                        {MOVES_ICON[2]}
                     </PressableSquare>
                 </View>
             </View>

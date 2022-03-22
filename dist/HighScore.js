@@ -29,6 +29,9 @@ var HighScore = function HighScore(props) {
     }, index.wins)), !!props.lastResults && /*#__PURE__*/_react.default.createElement(_reactNative.View, {
       style: styles.lastResultsContainer
     }, /*#__PURE__*/_react.default.createElement(_ScoreBoard.default, {
+      iconWin: props.iconWin,
+      iconLose: props.iconLose,
+      iconDraw: props.iconDraw,
       lastResult: index.lastResults
     })));
   };

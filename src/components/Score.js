@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
@@ -8,31 +8,27 @@ const Score = (props) => {
     let result = ''
     let icon = null
     let dimension = ''
-    let dimensionIcon = ''
 
     if (props.dimension === 'lg') {
         dimension = styles.containerScoreLG
-        dimensionIcon = 'lg'
     } else if (props.dimension === 'md') {
         dimension = styles.containerScoreMD
-        dimensionIcon = 'md'
     } else {
         dimension = styles.containerScoreSM
-        dimensionIcon = 'sm'
     }
 
     if (props.result === "win") {
         result = styles.win
-        icon = <FontAwesomeIcon size={dimensionIcon} icon={faCheck} />
+        icon = props.iconWin
     } else if (props.result === "lose") {
         result = styles.lose
-        icon = <FontAwesomeIcon size={dimensionIcon} icon={faXmark} />
+        icon = props.iconLose
     } else if (props.result === "draw") {
         result = styles.draw
-        icon = <FontAwesomeIcon size={dimensionIcon} icon={faMinus} />
+        icon = props.iconDraw
     } else {
         result = styles.default
-        icon = props.text
+        icon = <Text>{props.text}</Text>
     }
 
     return (
@@ -52,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         padding: 6,
         backgroundColor: 'black',
-        fontSize: '3em',
+        fontSize: 40,
         fontWeight: 'bold'
     },
 
@@ -62,7 +58,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         padding: 4,
         backgroundColor: 'black',
-        fontSize: '2em',
+        fontSize: 20,
         fontWeight: 'bold'
     },
 
@@ -72,7 +68,7 @@ const styles = StyleSheet.create({
         padding: 2,
         backgroundColor: 'black',
         borderRadius: 100,
-        fontSize: '1em',
+        fontSize: 10,
         fontWeight: 'bold'
     },
 

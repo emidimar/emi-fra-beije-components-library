@@ -7,10 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _freeSolidSvgIcons = require("@fortawesome/free-solid-svg-icons");
-
-var _reactFontawesome = require("@fortawesome/react-fontawesome");
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactNative = require("react-native");
@@ -40,9 +36,10 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var MOVES = ["paper", "rock", "scissors"];
-var MOVES_ICON = [_freeSolidSvgIcons.faHand, _freeSolidSvgIcons.faHandBackFist, _freeSolidSvgIcons.faHandScissors, _freeSolidSvgIcons.faQuestion];
 
 var Roshambo = function Roshambo(props) {
+  var MOVES_ICON = [props.paper, props.rock, props.scissors, props.cpu];
+
   var _useState = (0, _react.useState)(3),
       _useState2 = _slicedToArray(_useState, 2),
       randomMove = _useState2[0],
@@ -159,11 +156,7 @@ var Roshambo = function Roshambo(props) {
     style: props.textStyle
   }, props.playerTwo), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.choiceRow
-  }, /*#__PURE__*/_react.default.createElement(_PressableSquare.default, null, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    size: "4x",
-    icon: MOVES_ICON[randomMove],
-    color: "#FFE66D"
-  })))), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+  }, /*#__PURE__*/_react.default.createElement(_PressableSquare.default, null, MOVES_ICON[randomMove]))), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.centralRow
   }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
     style: props.textStyle
@@ -175,23 +168,11 @@ var Roshambo = function Roshambo(props) {
     style: styles.choiceRow
   }, /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
     onPress: game(0)
-  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    size: "4x",
-    icon: _freeSolidSvgIcons.faHand,
-    color: colors[0]
-  })), /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
+  }, MOVES_ICON[0]), /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
     onPress: game(1)
-  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    size: "4x",
-    icon: _freeSolidSvgIcons.faHandBackFist,
-    color: colors[1]
-  })), /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
+  }, MOVES_ICON[1]), /*#__PURE__*/_react.default.createElement(_PressableSquare.default, {
     onPress: game(2)
-  }, /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    size: "4x",
-    icon: _freeSolidSvgIcons.faHandScissors,
-    color: colors[2]
-  })))));
+  }, MOVES_ICON[2]))));
 };
 
 var styles = _reactNative.StyleSheet.create({

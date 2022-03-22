@@ -19,40 +19,27 @@ var Score = function Score(props) {
   var result = '';
   var icon = null;
   var dimension = '';
-  var dimensionIcon = '';
 
   if (props.dimension === 'lg') {
     dimension = styles.containerScoreLG;
-    dimensionIcon = 'lg';
   } else if (props.dimension === 'md') {
     dimension = styles.containerScoreMD;
-    dimensionIcon = 'md';
   } else {
     dimension = styles.containerScoreSM;
-    dimensionIcon = 'sm';
   }
 
   if (props.result === "win") {
     result = styles.win;
-    icon = /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-      size: dimensionIcon,
-      icon: _freeSolidSvgIcons.faCheck
-    });
+    icon = props.iconWin;
   } else if (props.result === "lose") {
     result = styles.lose;
-    icon = /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-      size: dimensionIcon,
-      icon: _freeSolidSvgIcons.faXmark
-    });
+    icon = props.iconLose;
   } else if (props.result === "draw") {
     result = styles.draw;
-    icon = /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-      size: dimensionIcon,
-      icon: _freeSolidSvgIcons.faMinus
-    });
+    icon = props.iconDraw;
   } else {
     result = styles.default;
-    icon = props.text;
+    icon = /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, props.text);
   }
 
   return /*#__PURE__*/_react.default.createElement(_reactNative.View, {
@@ -69,7 +56,7 @@ var styles = _reactNative.StyleSheet.create({
     borderRadius: 100,
     padding: 6,
     backgroundColor: 'black',
-    fontSize: '3em',
+    fontSize: 40,
     fontWeight: 'bold'
   },
   containerScoreMD: {
@@ -78,7 +65,7 @@ var styles = _reactNative.StyleSheet.create({
     borderRadius: 100,
     padding: 4,
     backgroundColor: 'black',
-    fontSize: '2em',
+    fontSize: 20,
     fontWeight: 'bold'
   },
   containerScoreSM: {
@@ -87,7 +74,7 @@ var styles = _reactNative.StyleSheet.create({
     padding: 2,
     backgroundColor: 'black',
     borderRadius: 100,
-    fontSize: '1em',
+    fontSize: 10,
     fontWeight: 'bold'
   },
   win: {

@@ -15,7 +15,11 @@ const HighScore = (props) => {
                 </View>
                 {!!props.lastResults &&
                     <View style={styles.lastResultsContainer}>
-                        <ScoreBoard lastResult={index.lastResults} />
+                        <ScoreBoard
+                            iconWin={props.iconWin}
+                            iconLose={props.iconLose}
+                            iconDraw={props.iconDraw}
+                            lastResult={index.lastResults} />
                     </View>}
             </View>
         )

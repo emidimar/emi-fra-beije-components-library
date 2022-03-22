@@ -20,7 +20,10 @@ var ScoreBoard = function ScoreBoard(props) {
     return /*#__PURE__*/_react.default.createElement(_Score.default, {
       key: key,
       dimension: props.dimension,
-      text: key + 1
+      text: key + 1,
+      iconWin: props.iconWin,
+      iconLose: props.iconLose,
+      iconDraw: props.iconDraw
     });
   };
 
@@ -29,7 +32,10 @@ var ScoreBoard = function ScoreBoard(props) {
       key: key,
       dimension: props.dimension,
       result: element,
-      text: key + 1
+      text: key + 1,
+      iconWin: props.iconWin,
+      iconLose: props.iconLose,
+      iconDraw: props.iconDraw
     });
   };
 
